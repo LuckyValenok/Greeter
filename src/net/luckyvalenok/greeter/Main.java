@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 
 public class Main {
 
+    private static final String[] month = new String[]{"январе", "феврале", "марте", "апреле", "мае", "июне", "июле", "августе", "сенятбре", "октябре", "ноябре", "декабре"};
+
     public static void main(String[] args) {
         Pattern patternDate = Pattern.compile("^\\d{1,2}.\\d{1,2}.\\d{4}$");
         Scanner scanner = new Scanner(System.in);
@@ -35,7 +37,7 @@ public class Main {
                 case 7:
                 case 8:
                     if (day < 1 || day > 31) {
-                        System.out.println("В " + Month.values()[month - 1].name + " всего 31 день.");
+                        System.out.println("В " + Main.month[month - 1] + " всего 31 день.");
                         return;
                     }
                     break;
@@ -53,7 +55,7 @@ public class Main {
                 case 9:
                 case 11:
                     if (day < 1 || day > 30) {
-                        System.out.println("В " + Month.values()[month - 1].name + " всего 30 дней.");
+                        System.out.println("В " + Main.month[month - 1] + " всего 30 дней.");
                         return;
                     }
                     break;
@@ -88,18 +90,5 @@ public class Main {
                 return i + " " + two;
         }
         return i + " " + three;
-    }
-
-    enum Month {
-        JANUARY("январе"), FEBRUARY("феврале"), MARCH("марте"),
-        APRIL("апреле"), MAY("мае"), JUNE("июне"), JULY("июле"),
-        AUGUST("августе"), SEPTEMBER("сентябре"), OCTOBER("октябре"),
-        NOVEMBER("ноябре"), DECEMBER("декабре");
-
-        String name;
-
-        Month(String name) {
-            this.name = name;
-        }
     }
 }
