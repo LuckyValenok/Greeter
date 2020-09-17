@@ -35,7 +35,7 @@ public class Main {
                 case 7:
                 case 8:
                     if (day < 1 || day > 31) {
-                        System.out.println("В " + (month == 1 ? "январе" : month == 3 ? "марте" : month == 5 ? "мае" : month == 7 ? "июле" : "августе") + " всего 31 день.");
+                        System.out.println("В " + Month.values()[month - 1].name + " всего 31 день.");
                         return;
                     }
                     break;
@@ -53,7 +53,7 @@ public class Main {
                 case 9:
                 case 11:
                     if (day < 1 || day > 30) {
-                        System.out.println("В " + (month == 4 ? "апреле" : month == 6 ? "июне" : month == 9 ? "сентябре" : "ноябре") + " всего 30 дней.");
+                        System.out.println("В " + Month.values()[month - 1].name + " всего 30 дней.");
                         return;
                     }
                     break;
@@ -88,5 +88,18 @@ public class Main {
                 return i + " " + two;
         }
         return i + " " + three;
+    }
+
+    enum Month {
+        JANUARY("январе"), FEBRUARY("феврале"), MARCH("марте"),
+        APRIL("апреле"), MAY("мае"), JUNE("июне"), JULY("июле"),
+        AUGUST("августе"), SEPTEMBER("сентябре"), OCTOBER("октябре"),
+        NOVEMBER("ноябре"), DECEMBER("декабре");
+
+        String name;
+
+        Month(String name) {
+            this.name = name;
+        }
     }
 }
