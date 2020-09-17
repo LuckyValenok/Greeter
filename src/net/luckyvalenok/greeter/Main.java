@@ -27,8 +27,7 @@ public class Main {
         int nowDay = calendar.get(Calendar.DAY_OF_MONTH);
         if (year > nowYear || (year == nowYear && month > nowMonth) || (year == nowYear && month == nowMonth && day > nowDay)) {
             System.out.println("Похоже, что вы еще не родились...");
-            return;
-        } else
+        } else {
             switch (month) {
                 case 1:
                 case 3:
@@ -62,8 +61,9 @@ public class Main {
                     System.out.println("Такого месяца нет.");
                     return;
             }
-        System.out.println("Привет, " + name + ". Ваш возраст равен " + format(nowYear - year - (month > nowMonth || month == nowMonth && day > nowDay ? 1 : 0), "год", "год", "лет")
-                + ". Приятно познакомиться");
+            System.out.println("Привет, " + name + ". Ваш возраст: " + format(nowYear - year - (month > nowMonth || month == nowMonth && day > nowDay ? 1 : 0), "год", "года", "лет")
+                    + ". Приятно познакомиться");
+        }
     }
 
     private static boolean isLeapYear(int year) {
