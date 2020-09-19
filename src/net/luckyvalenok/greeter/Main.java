@@ -12,12 +12,12 @@ public class Main {
         Pattern patternDate = Pattern.compile("^\\d{1,2}.\\d{1,2}.\\d{4}$");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Как вас зовут?");
-        String name = scanner.next();
+        String name = scanner.nextLine();
         System.out.println("Хорошо, теперь напишите дату своего рождения в формате дд.мм.гггг");
-        String date = scanner.next();
+        String date = scanner.nextLine();
         while (!patternDate.matcher(date).matches()) {
             System.out.println("Вы ввели неверно дату. Помните, формат даты - дд.мм.гггг");
-            date = scanner.next();
+            date = scanner.nextLine();
         }
         String[] component = date.split("\\.");
         int day = Integer.parseInt(component[0]);
