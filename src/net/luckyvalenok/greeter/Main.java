@@ -7,9 +7,9 @@ import java.util.regex.Pattern;
 public class Main {
 
     private static final String[] month = new String[]{"январе", "феврале", "марте", "апреле", "мае", "июне", "июле", "августе", "сенятбре", "октябре", "ноябре", "декабре"};
+    private static final Pattern patternDate = Pattern.compile("^\\d{1,2}.\\d{1,2}.\\d{4}$");
 
     public static void main(String[] args) {
-        Pattern patternDate = Pattern.compile("^\\d{1,2}.\\d{1,2}.\\d{4}$");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Как вас зовут?");
         String name = scanner.nextLine();
@@ -30,40 +30,30 @@ public class Main {
         if (year > nowYear || (year == nowYear && month > nowMonth) || (year == nowYear && month == nowMonth && day > nowDay)) {
             System.out.println("Похоже, что вы еще не родились...");
         } else {
-            switch (month) {
-                case 1:
-                case 3:
-                case 5:
-                case 7:
-                case 8:
-                    if (day < 1 || day > 31) {
-                        System.out.println("В " + Main.month[month - 1] + " всего 31 день.");
-                        return;
-                    }
-                    break;
-                case 2:
-                    if (isLeapYear(year) && (day < 1 || day > 29)) {
-                        System.out.println("В високосном году в феврале 29 дней.");
-                        return;
-                    } else if (day < 1 || day > 28) {
-                        System.out.println("В феврале 28 дней.");
-                        return;
-                    }
-                    break;
-                case 4:
-                case 6:
-                case 9:
-                case 11:
-                    if (day < 1 || day > 30) {
-                        System.out.println("В " + Main.month[month - 1] + " всего 30 дней.");
-                        return;
-                    }
-                    break;
-                default:
-                    System.out.println("Такого месяца нет.");
+            if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8) {
+                if (day < 1 || day > 31) {
+                    System.out.println("В " + Main.month[month - 1] + " всего 31 день.");
                     return;
+                }
+            } else if (month == 2) {
+                if (isLeapYear(year) && (day < 1 || day > 29)) {
+                    System.out.println("В високосном году в феврале 29 дней.");
+                    return;
+                } else if (day < 1 || day > 28) {
+                    System.out.println("В феврале 28 дней.");
+                    return;
+                }
+            } else if (month == 4 || month == 6 || month == 9 || month == 11) {
+                if (day < 1 || day > 30) {
+                    System.out.println("В " + Main.month[month - 1] + " всего 30 дней.");
+                    return;
+                }
+            } else {
+                System.out.println("Такого месяца нет.");
+                return;
             }
-            System.out.println("Привет, " + name + ". Ваш возраст: " + format(nowYear - year - (month > nowMonth || month == nowMonth && day > nowDay ? 1 : 0), "год", "года", "лет")
+            System.out.println("Привет, " + name + ". Ваш возраст: "
+                    + format(nowYear - year - (month > nowMonth || month == nowMonth && day > nowDay ? 1 : 0), "год", "года", "лет")
                     + ". Приятно познакомиться");
         }
     }
